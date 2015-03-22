@@ -6,14 +6,18 @@
 
 using namespace std;
 
-// Program configurations
-#define INFILE "A-large-practice.in"
-#define OUTFILE "A-large-practice.out"
+/*****************************************************
+* Configurations
+* Problem Category: A, B or C
+* Problem Size: "small" or "large"
+******************************************************/
+#define PROB_CAT "A"
+#define PROB_SIZE "large"
 
 // Shorthands
-#define pb push_back
-#define all(v) v.begin(),v.end()
-#define rall(v) v.rbegin(),v.rend()
+#define push push_back
+#define all(V) V.begin(),V.end()
+#define rall(V) V.rbegin(),V.rend()
 #define sz size()
 #define rep(i,m) for(int i=0;i<(int)(m);i++)
 #define repStep(i,m,s) for(int i=0;i<(int)(m);i=i+s)
@@ -28,42 +32,59 @@ using namespace std;
 #define length(V) (hypot((V).X,(V).Y))
 #define vect(a,b) ((b)-(a))
 #define cross(a,b) ((conj(a)*(b)).imag())
-#define normalize(v) ((v)/length(v))
+#define normalize(V) ((V)/length(V))
 #define rotate(p,about,theta) ((p-about)*exp(point(0,theta))+about)
 #define pointEqu(a,b) (comp(a.X,b.X)==0 && comp(a.Y,b.Y)==0)
+#define printVect(V) std::copy(V.begin(), V.end(), std::ostream_iterator<string>(std::cout, " "))
 
-typedef stringstream StrStream;
-typedef pair<int, int> PairIntInt;
-typedef vector<PairIntInt> VectPairIntInt;
-typedef vector<string> VectStr;
-typedef vector<int> VectInt;
-typedef vector<double> VectDbl;
-typedef vector<vector<int> > VectVectI;
+#define INFILE PROB_CAT "-" PROB_SIZE "-practice.in"
+#define OUTFILE PROB_CAT "-" PROB_SIZE "-practice.out"
+
+typedef std::istringstream InStream;
+typedef std::ostringstream OutStream;
+typedef std::pair<int, int> PairIntInt;
+typedef std::vector<PairIntInt> VectPairIntInt;
+typedef std::vector<string> VectStr;
+typedef std::vector<int> VectInt;
+typedef std::vector<double> VectDbl;
+typedef std::vector<vector<int> > VectVectI;
 typedef long long LongLong;
 typedef long double LongDbl;
-typedef complex<double> Point;
-typedef pair<Point, Point> Segment;
-typedef pair<double, Point> Circle;
-typedef vector<Point> Polygon;
+typedef std::complex<double> Point;
+typedef std::pair<Point, Point> Segment;
+typedef std::pair<double, Point> Circle;
+typedef std::vector<Point> Polygon;
 
 const int oo = (int) 1e9;
 const double PI = 2 * acos(0);
 const double eps = 1e-9;
 
 int main() {
+	// Standard variables
+	int caseCount;		// Number of test cases
+	string txtline;		// Single line of text read from the input file
 	const std::string infile = INFILE;
-	std::string outfile = OUTFILE;
-		
-	std::freopen(infile.c_str(), "rt", stdin);
-	std::freopen(outfile.c_str(), "wt", stdout);
+	const std::string outfile = OUTFILE;
 	
-	int caseCount, storeCredit, itemsCount;
+	if (std::freopen(infile.c_str(), "rt", stdin) == NULL) {
+		printf("Error occurred while opening input file: %s\n", INFILE);
+		return -1;
+	}
+	if (std::freopen(outfile.c_str(), "wt", stdout) == NULL) {
+		printf("Error occurred while opening output file: %s\n", OUTFILE);
+		fclose(stdin);
+		return -1;
+	}
+	
+	/************ Solution starts from here ***************/
+	// Program variables
+	int storeCredit, itemsCount;
 	VectInt prices;
 	
 	// Get number of test cases
-	std::cin >> caseCount;
+	std::cin >> caseCount;	// DO NOT CHANGE
 	// Get data for each test case
-	repInit(caseIdx, 1, caseCount) {
+	repInit(caseIdx, 1, caseCount+1) {
 		// Get store credit and number of items
 		std::cin >> storeCredit >> itemsCount;
 		std::cout << "Case #" << caseIdx << ": ";
@@ -78,6 +99,10 @@ int main() {
 			}
 		}
 	}
+	
+	// Close in & out streams
+	fclose(stdin);
+	fclose(stdout);
 	
 	return 0;
 }
