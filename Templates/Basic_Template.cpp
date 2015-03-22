@@ -62,22 +62,28 @@ const double PI = 2 * acos(0);
 const double eps = 1e-9;
 
 int main() {
-	// File operations
+	// Standard variables
+	int caseCount;			// Number of test cases
+	//string txtline, word;	// Single line of text and its each word read from input file
 	const std::string infile = INFILE;
 	const std::string outfile = OUTFILE;
-	std::freopen(infile.c_str(), "rt", stdin);
-	std::freopen(outfile.c_str(), "wt", stdout);
 	
-	// Standard variables
-	int caseCount;
-	string newline, txtline;
+	if (std::freopen(infile.c_str(), "rt", stdin) == NULL) {
+		printf("Error occurred while opening input file: %s\n", INFILE);
+		return -1;
+	}
+	if (std::freopen(outfile.c_str(), "wt", stdout) == NULL) {
+		printf("Error occurred while opening output file: %s\n", OUTFILE);
+		fclose(stdin);
+		return -1;
+	}
 	
 	/************ Solution starts from here ***************/	
 	// Program variables
 	
 	// Get number of test cases
 	std::cin >> caseCount;	// DO NOT CHANGE
-	std::getline(cin, txtline);
+	//std::getline(cin, txtline);
 	// Get data for each test case
 	repInit(caseIdx, 1, caseCount + 1) {
 		std::cout << "Case #" << caseIdx << ": ";	// DO NOT CHANGE
