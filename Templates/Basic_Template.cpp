@@ -93,5 +93,8 @@ int main() {
 		cout << endl;
 	}
 	
+	fclose(stdin);
+	fclose(stdout);
+	
 	return 0;
 }
